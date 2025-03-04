@@ -30,3 +30,5 @@ All task assignments are not final and subject to change. Inter-group collaborat
 - [ ] Create a bipartite network of articles and outlets, with edges representing the publication of articles by outlets, and edge weights representing the ideology of the article.
 - [ ] Use GNN or autoencoder to predict the connection between articles and outlets, and the ideology of the article as edge weights.
 - [ ] Potentially use the embedding of the existing articles as edge attributes, predict the edge attributes of new articles, and decode the embedding to predict the article text.
+
+See News Coverage Network here: https://colab.research.google.com/drive/1xGJKKYK6sdAqam4kbWO-9QdlKPOXXbnk?usp=drive_link#scrollTo=SIjQ8LSU5t2-
