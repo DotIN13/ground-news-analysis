@@ -1,0 +1,150 @@
+{
+  "type": "object",
+  "properties": {
+    "potential_bias": {
+      "type": "array",
+      "description": "List of identified potential biases in the article.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "bias": {
+            "type": "string",
+            "description": "The potential bias identified in the article."
+          },
+          "bias_type": {
+            "type": "string",
+            "description": "Comma separated bias types (e.g., Political Bias, Sensationalism Bias, etc.)."
+          },
+          "news_event": {
+            "type": "string",
+            "description": "The news event or policy domain related to the bias."
+          },
+          "left_wing_perspective": {
+            "type": "string",
+            "description": "The left-wing perspective related to the news event."
+          },
+          "right_wing_perspective": {
+            "type": "string",
+            "description": "The right-wing perspective related to the news event."
+          },
+          "bias_analysis": {
+            "type": "string",
+            "description": "Explanation of how the biased content aligns with left or right-wing policies."
+          },
+          "bias_favoring": {
+            "type": "string",
+            "description": "Indicates whether the bias favors left or right-wing perspectives."
+          }
+        },
+        "required": [
+          "bias",
+          "bias_type",
+          "news_event",
+          "left_wing_perspective",
+          "right_wing_perspective",
+          "bias_analysis",
+          "bias_favoring"
+        ]
+      }
+    },
+    "overall_assessment": {
+      "type": "string",
+      "description": "Overall assessment of the article's bias."
+    },
+    "logit_scores": {
+      "type": "object",
+      "description": "Raw logits before softmax transformation, used for classification.",
+      "properties": {
+        "Left": {
+          "type": "number",
+          "description": "Raw logit score for the Left category."
+        },
+        "Left-Center": {
+          "type": "number",
+          "description": "Raw logit score for the Left-Center category."
+        },
+        "Center": {
+          "type": "number",
+          "description": "Raw logit score for the Center category."
+        },
+        "Center-Right": {
+          "type": "number",
+          "description": "Raw logit score for the Center-Right category."
+        },
+        "Right": {
+          "type": "number",
+          "description": "Raw logit score for the Right category."
+        }
+      },
+      "required": [
+        "Left",
+        "Left-Center",
+        "Center",
+        "Center-Right",
+        "Right"
+      ]
+    },
+    "softmax_probabilities": {
+      "type": "object",
+      "description": "Softmax-normalized probability distribution across classification categories.",
+      "properties": {
+        "Left": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Probability for Left category after softmax normalization."
+        },
+        "Left-Center": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Probability for Left-Center category after softmax normalization."
+        },
+        "Center": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Probability for Center category after softmax normalization."
+        },
+        "Center-Right": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Probability for Center-Right category after softmax normalization."
+        },
+        "Right": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Probability for Right category after softmax normalization."
+        }
+      },
+      "required": [
+        "Left",
+        "Left-Center",
+        "Center",
+        "Center-Right",
+        "Right"
+      ]
+    },
+    "label": {
+      "type": "string",
+      "enum": [
+        "left",
+        "left-center",
+        "center",
+        "center-right",
+        "right",
+        "unbiased"
+      ],
+      "description": "Final categorical label based on the highest softmax probability."
+    }
+  },
+  "required": [
+    "potential_bias",
+    "overall_assessment",
+    "logit_scores",
+    "softmax_probabilities",
+    "label"
+  ]
+}
